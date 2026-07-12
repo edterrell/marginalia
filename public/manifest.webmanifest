@@ -1,0 +1,19 @@
+{
+  "name": "Marginalia: a commonplace book",
+  "short_name": "Marginalia",
+  "description": "A local-first commonplace book for the quotes you love. Private, offline, no account.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#e7ddc7",
+  "theme_color": "#8a5a3b",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

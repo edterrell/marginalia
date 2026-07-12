@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Marginalia">
+  <rect width="512" height="512" rx="72" fill="#8a5a3b"/>
+  <rect x="96" y="120" width="320" height="272" rx="10" fill="#f4ecd6" stroke="#d8ca9f" stroke-width="4"/>
+  <line x1="150" y1="120" x2="150" y2="392" stroke="#b6553f" stroke-width="4" opacity="0.7"/>
+  <text x="250" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="300" font-weight="700" fill="#8a5a3b" text-anchor="middle">&#8220;</text>
+</svg>

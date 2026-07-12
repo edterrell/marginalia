@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" font-family="'Courier New', ui-monospace, monospace">
+  <defs>
+    <pattern id="ruled" width="1200" height="28" patternUnits="userSpaceOnUse">
+      <rect width="1200" height="28" fill="#e7ddc7"/>
+      <line x1="0" y1="27.5" x2="1200" y2="27.5" stroke="#78603a" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <filter id="stamp" x="-5%" y="-5%" width="115%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="0" flood-color="#3c2c14" flood-opacity="0.22"/>
+    </filter>
+    <filter id="card" x="-5%" y="-5%" width="115%" height="120%">
+      <feDropShadow dx="3" dy="3" stdDeviation="0" flood-color="#3c2c14" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="700" fill="url(#ruled)"/>
+
+  <!-- header -->
+  <text x="60" y="78" font-size="50" font-weight="700" letter-spacing="15" fill="#2c2620">MARGINALIA</text>
+  <text x="62" y="112" font-size="19" font-style="italic" fill="#6b5f4c" font-family="Georgia, 'Times New Roman', serif">a commonplace book for the quotes you want to keep</text>
+  <line x1="60" y1="134" x2="1140" y2="134" stroke="#2c2620" stroke-width="2"/>
+  <line x1="60" y1="139" x2="1140" y2="139" stroke="#2c2620" stroke-width="1"/>
+
+  <!-- search -->
+  <rect x="60" y="158" width="1080" height="46" rx="2" fill="#f4ecd6" stroke="#d8ca9f"/>
+  <text x="78" y="187" font-size="18" fill="#a2957c">Search quotes, books, authors, tags…</text>
+
+  <!-- buttons -->
+  <g>
+    <rect x="62" y="222" width="168" height="42" rx="2" fill="#8a5a3b" filter="url(#stamp)"/>
+    <text x="146" y="248" font-size="14" letter-spacing="1.2" fill="#fbf6ea" text-anchor="middle">+ ADD QUOTE</text>
+
+    <rect x="244" y="222" width="118" height="42" rx="2" fill="#f4ecd6" stroke="#2c2620" filter="url(#stamp)"/>
+    <text x="303" y="248" font-size="14" letter-spacing="1.2" fill="#2c2620" text-anchor="middle">IMPORT…</text>
+
+    <rect x="376" y="222" width="150" height="42" rx="2" fill="#f4ecd6" stroke="#2c2620" filter="url(#stamp)"/>
+    <text x="451" y="248" font-size="14" letter-spacing="1.2" fill="#2c2620" text-anchor="middle">EXPORT .MD</text>
+
+    <rect x="540" y="222" width="162" height="42" rx="2" fill="#f4ecd6" stroke="#2c2620" filter="url(#stamp)"/>
+    <text x="621" y="248" font-size="14" letter-spacing="1.2" fill="#2c2620" text-anchor="middle">EXPORT .JSON</text>
+  </g>
+
+  <!-- tag chips -->
+  <g font-size="13">
+    <rect x="62" y="288" width="54" height="28" rx="14" fill="#8a5a3b"/>
+    <text x="89" y="307" fill="#fbf6ea" text-anchor="middle">All</text>
+    <rect x="126" y="288" width="112" height="28" rx="14" fill="none" stroke="#c9b48f" stroke-dasharray="4 3"/>
+    <text x="182" y="307" fill="#6b5f4c" text-anchor="middle">#curiosity</text>
+    <rect x="248" y="288" width="70" height="28" rx="14" fill="none" stroke="#c9b48f" stroke-dasharray="4 3"/>
+    <text x="283" y="307" fill="#6b5f4c" text-anchor="middle">#wit</text>
+    <rect x="328" y="288" width="86" height="28" rx="14" fill="none" stroke="#c9b48f" stroke-dasharray="4 3"/>
+    <text x="371" y="307" fill="#6b5f4c" text-anchor="middle">#nature</text>
+  </g>
+
+  <!-- card 1 -->
+  <g>
+    <rect x="62" y="344" width="524" height="308" rx="2" fill="#f4ecd6" stroke="#d8ca9f" filter="url(#card)"/>
+    <line x1="96" y1="344" x2="96" y2="652" stroke="#b6553f" stroke-width="2" stroke-opacity="0.6"/>
+    <g font-family="Georgia, 'Times New Roman', serif" font-size="25" fill="#2c2620">
+      <text x="116" y="398">“The cure for boredom is</text>
+      <text x="116" y="432">curiosity. There is no</text>
+      <text x="116" y="466">cure for curiosity.”</text>
+    </g>
+    <text x="116" y="516" font-size="14" letter-spacing="1" fill="#6b5f4c">A CERTAIN WORLD — DOROTHY PARKER</text>
+    <text x="116" y="548" font-size="14" fill="#8a5a3b">#curiosity  #wit</text>
+    <rect x="116" y="596" width="92" height="34" rx="2" fill="none" stroke="#9c3b2e"/>
+    <text x="162" y="618" font-size="13" letter-spacing="1" fill="#9c3b2e" text-anchor="middle">DELETE</text>
+  </g>
+
+  <!-- card 2 -->
+  <g>
+    <rect x="616" y="344" width="524" height="308" rx="2" fill="#f4ecd6" stroke="#d8ca9f" filter="url(#card)"/>
+    <line x1="650" y1="344" x2="650" y2="652" stroke="#b6553f" stroke-width="2" stroke-opacity="0.6"/>
+    <g font-family="Georgia, 'Times New Roman', serif" font-size="25" fill="#2c2620">
+      <text x="670" y="398">“I went to the woods</text>
+      <text x="670" y="432">because I wished to live</text>
+      <text x="670" y="466">deliberately.”</text>
+    </g>
+    <text x="670" y="516" font-size="14" letter-spacing="1" fill="#6b5f4c">WALDEN — HENRY DAVID THOREAU</text>
+    <text x="670" y="548" font-size="14" fill="#8a5a3b">#nature</text>
+    <rect x="670" y="598" width="72" height="26" rx="2" fill="none" stroke="#8a5a3b"/>
+    <text x="706" y="616" font-size="12" letter-spacing="1.5" fill="#8a5a3b" text-anchor="middle">KINDLE</text>
+    <rect x="1022" y="596" width="92" height="34" rx="2" fill="none" stroke="#9c3b2e"/>
+    <text x="1068" y="618" font-size="13" letter-spacing="1" fill="#9c3b2e" text-anchor="middle">DELETE</text>
+  </g>
+</svg>
