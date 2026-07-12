@@ -42,6 +42,9 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 1.25rem 1rem 4rem;
+  /* Break long unbreakable tokens (URLs, long words) so nothing forces the page
+     wider than the viewport on narrow screens. */
+  overflow-wrap: break-word;
 }
 
 /* --- header --- */
@@ -210,17 +213,20 @@ body {
 /* --- cards --- */
 .card-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  /* minmax(0, 1fr) lets tracks shrink below their content's min-content width,
+     so a long token in one card can't stretch the whole column past the screen. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
 }
 @media (min-width: 620px) {
   .card-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   }
 }
 
 .card {
   position: relative;
+  min-width: 0; /* allow the grid item to shrink below its content's intrinsic width */
   background: var(--card);
   border: 1px solid var(--card-edge);
   border-radius: 2px;
@@ -274,6 +280,7 @@ body {
   margin-top: 0.5rem;
 }
 .tag {
+  min-width: 0; /* a long tag can shrink and wrap instead of overflowing */
   font-family: var(--mono);
   font-size: 0.7rem;
   color: var(--accent);
@@ -281,6 +288,8 @@ body {
   border: none;
   padding: 0;
   cursor: pointer;
+  text-align: left;
+  overflow-wrap: anywhere;
   border-bottom: 1px solid transparent;
 }
 .tag:hover {
