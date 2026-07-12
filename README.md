@@ -8,9 +8,8 @@
 </p>
 
 <p align="center">
-  <a href="https://your-username.github.io/marginalia/"><strong>Try the live demo</strong></a>
-  &nbsp;·&nbsp; no install, no sign-up<br />
-  <sub><em>Replace this link with your Pages URL after deploying.</em></sub>
+  <a href="https://hapzter.github.io/marginalia/"><strong>Try the live demo</strong></a>
+  &nbsp;·&nbsp; no install, no sign-up
 </p>
 
 Readers highlight passages everywhere (Kindle, notebooks, screenshots) and then
