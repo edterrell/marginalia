@@ -156,9 +156,12 @@ body {
 }
 .field {
   width: 100%;
+  max-width: 100%;
   padding: 0.5rem 0.6rem;
   font-family: var(--mono);
-  font-size: 0.95rem;
+  /* Keep form controls at >= 16px: iOS Safari/Chrome auto-zoom the page when a
+     field smaller than that is focused, which causes a horizontal scrollbar. */
+  font-size: 1rem;
   color: var(--ink);
   background: #fbf5e6;
   border: 1px solid var(--card-edge);
