@@ -131,6 +131,7 @@ export function mountApp(root: HTMLElement, store: KeyValueStore): void {
     searchInput,
     el("div", { class: "actions" }, [
       el("button", { type: "button", class: "btn primary", onclick: toggleForm }, ["+ Add quote"]),
+      el("button", { type: "button", class: "btn", onclick: () => pickNewWord() }, ["New word"]),
       el("button", { type: "button", class: "btn", onclick: () => fileInput.click() }, ["Import…"]),
       el("button", { type: "button", class: "btn", onclick: exportMarkdown }, ["Export .md"]),
       el("button", { type: "button", class: "btn", onclick: exportJson }, ["Export .json"]),
@@ -251,18 +252,25 @@ export function mountApp(root: HTMLElement, store: KeyValueStore): void {
     try {
       if (store.getItem(WOTD_APPLIED_KEY) === today) return;
       store.setItem(WOTD_APPLIED_KEY, today);
-      const word = pickSearchOfTheDay(
-        quotes.map((q) => [q.text, q.title, q.author].join(" ")),
-        store.getItem(WOTD_LAST_KEY),
-      );
-      if (!word) return;
-      store.setItem(WOTD_LAST_KEY, word);
-      searchInput.value = word;
-      filter.text = word;
-      renderList();
     } catch {
-      /* storage unavailable: skip silently */
+      return; // storage unavailable: skip silently
     }
+    pickNewWord();
+  }
+
+  /** Put a fresh random word in the search box (never the previous one). Used on the
+   *  first load each day and by the "New word" button. */
+  function pickNewWord(): void {
+    if (quotes.length === 0) return setStatus("Add or import some quotes first.", true);
+    const word = pickSearchOfTheDay(
+      quotes.map((q) => [q.text, q.title, q.author].join(" ")),
+      store.getItem(WOTD_LAST_KEY),
+    );
+    if (!word) return setStatus("No suitable word found in your quotes yet.", true);
+    store.setItem(WOTD_LAST_KEY, word);
+    searchInput.value = word;
+    filter.text = word;
+    renderList();
   }
 
   function renderList(): void {
