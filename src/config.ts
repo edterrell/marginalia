@@ -3,7 +3,7 @@
 // app's Content-Security-Policy or its "nothing phones home" guarantee.
 
 /** Where "View source" points. e.g. "https://github.com/you/marginalia" */
-export const SOURCE_URL = "";
+export const SOURCE_URL = "https://github.com/edterrell/marginalia";
 
 /** Your tip-jar page. e.g. "https://buymeacoffee.com/you", "https://ko-fi.com/you",
  *  or "https://github.com/sponsors/you". */

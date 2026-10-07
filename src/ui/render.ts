@@ -12,10 +12,14 @@ import {
   type Quote,
 } from "../lib/quotes.js";
 import { filterQuotes, type Filter } from "../lib/search.js";
+import { pickSearchOfTheDay } from "../lib/searchOfTheDay.js";
 import { fromJSON, toJSON, toMarkdown } from "../lib/exporters.js";
 import { parseKindleClippings } from "../lib/parseKindle.js";
 import { parseKoreaderJson } from "../lib/parseKoreader.js";
 import { SOURCE_URL, TIP_URL, TIP_LABEL } from "../config.js";
+
+const WOTD_APPLIED_KEY = "marginalia.wotd.applied";
+const WOTD_LAST_KEY = "marginalia.wotd.last";
 
 const deps: CreateDeps = {
   id: () =>
@@ -152,6 +156,7 @@ export function mountApp(root: HTMLElement, store: KeyValueStore): void {
 
   renderTagBar();
   renderList();
+  applySearchOfTheDay();
 
   // --- drag-and-drop import ---
   // Drop a My Clippings.txt or .json anywhere on the app to import it. This uses
@@ -228,6 +233,30 @@ export function mountApp(root: HTMLElement, store: KeyValueStore): void {
       );
     tagBar.append(chip("All", undefined, !filter.tag));
     for (const tag of tags) tagBar.append(chip(`#${tag}`, tag, filter.tag === tag));
+  }
+
+  /** First load each day: pre-fill the search with a random evocative word from the
+   *  user's own quotes (never the same as last time). Once per day; skipped when the
+   *  collection is empty or the browser can't persist the once-a-day flag. */
+  function applySearchOfTheDay(): void {
+    if (quotes.length === 0) return;
+    const d = new Date();
+    const today = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+    try {
+      if (store.getItem(WOTD_APPLIED_KEY) === today) return;
+      store.setItem(WOTD_APPLIED_KEY, today);
+      const word = pickSearchOfTheDay(
+        quotes.map((q) => [q.text, q.title, q.author].join(" ")),
+        store.getItem(WOTD_LAST_KEY),
+      );
+      if (!word) return;
+      store.setItem(WOTD_LAST_KEY, word);
+      searchInput.value = word;
+      filter.text = word;
+      renderList();
+    } catch {
+      /* storage unavailable: skip silently */
+    }
   }
 
   function renderList(): void {
