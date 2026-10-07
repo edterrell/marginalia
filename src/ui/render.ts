@@ -13,6 +13,7 @@ import {
 } from "../lib/quotes.js";
 import { filterQuotes, type Filter } from "../lib/search.js";
 import { pickSearchOfTheDay } from "../lib/searchOfTheDay.js";
+import { STORAGE_ERROR_EVENT } from "../lib/idbStore.js";
 import { fromJSON, toJSON, toMarkdown } from "../lib/exporters.js";
 import { parseKindleClippings } from "../lib/parseKindle.js";
 import { parseKoreaderJson } from "../lib/parseKoreader.js";
@@ -153,6 +154,11 @@ export function mountApp(root: HTMLElement, store: KeyValueStore): void {
     list,
     buildFooter(),
   );
+
+  // Background saves can fail (e.g. disk full); say so instead of failing silently.
+  window.addEventListener(STORAGE_ERROR_EVENT, (e) => {
+    setStatus(String((e as CustomEvent).detail ?? "Could not save your quotes."), true);
+  });
 
   renderTagBar();
   renderList();

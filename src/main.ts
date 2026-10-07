@@ -1,22 +1,39 @@
 import "./styles.css";
 import { mountApp } from "./ui/render.js";
 import { createMemoryStore, type KeyValueStore } from "./lib/storage.js";
+import { createIdbStore } from "./lib/idbStore.js";
 
-/** Prefer localStorage; fall back to in-memory if it's unavailable (private mode). */
-function pickStore(): KeyValueStore {
+/** localStorage if usable, else null (blocked storage, private mode). */
+function usableLocalStorage(): Storage | null {
   try {
     const probe = "__marginalia_probe__";
     window.localStorage.setItem(probe, "1");
     window.localStorage.removeItem(probe);
     return window.localStorage;
   } catch {
-    return createMemoryStore();
+    return null;
   }
+}
+
+/**
+ * Prefer IndexedDB (no small size cap, so a large My Clippings.txt fits), migrating any
+ * quotes left in localStorage. Fall back to localStorage, then to in-memory.
+ */
+async function pickStore(): Promise<KeyValueStore> {
+  const local = usableLocalStorage();
+  if ("indexedDB" in window) {
+    try {
+      return await createIdbStore(local ?? undefined);
+    } catch {
+      /* IndexedDB unavailable or blocked: fall through to localStorage */
+    }
+  }
+  return local ?? createMemoryStore();
 }
 
 const root = document.getElementById("app");
 if (root) {
-  mountApp(root, pickStore());
+  void pickStore().then((store) => mountApp(root, store));
 }
 
 // Progressive enhancement: offline support, production only.
